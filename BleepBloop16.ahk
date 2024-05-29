@@ -2,26 +2,6 @@
 #SingleInstance
 
 SetWorkingDir A_ScriptDir
-sfx1 := A_WorkingDir "\sfx\1.wav"
-sfx2 := A_WorkingDir "\sfx\2.wav"
-sfx3 := A_WorkingDir "\sfx\3.wav"
-sfx4 := A_WorkingDir "\sfx\4.wav"
-sfx5 := A_WorkingDir "\sfx\5.wav"
-sfx6 := A_WorkingDir "\sfx\6.wav"
-sfx7 := A_WorkingDir "\sfx\7.wav"
-sfx8 := A_WorkingDir "\sfx\8.wav"
-sfx9 := A_WorkingDir "\sfx\9.wav"
-sfx10 := A_WorkingDir "\sfx\10.wav"
-sfx11 := A_WorkingDir "\sfx\11.wav"
-sfx12 := A_WorkingDir "\sfx\12.wav"
-sfx13 := A_WorkingDir "\sfx\13.wav"
-sfx14 := A_WorkingDir "\sfx\14.wav"
-sfx15 := A_WorkingDir "\sfx\15.wav"
-sfx16 := A_WorkingDir "\sfx\16.wav"
-sfx17 := A_WorkingDir "\sfx\17.wav"
-sfx18 := A_WorkingDir "\sfx\18.wav"
-sfx19 := A_WorkingDir "\sfx\19.wav"
-sfx20 := A_WorkingDir "\sfx\20.wav"
 
 ~+a::sfxPlayLetterNumber()
 ~+b::sfxPlayLetterNumber()
@@ -123,27 +103,59 @@ sfx20 := A_WorkingDir "\sfx\20.wav"
 ~Tab::sfxPlayTab()
 ~Space::sfxPlaySpace()
 
+~Shift::sfxPlayControl()
+~Control::sfxPlayControl()
+~Alt::sfxPlayControl()
+~Esc::sfxPlayControl()
+
+~^c::sfxPlayCopy()
+~^x::sfxPlayCut()
+~^v::sfxPlayPaste()
+
 sfxPlayLetterNumber(){
-	rand := Random(1, 20)
+	rand := Random(1, 40)
 	SoundPlay A_WorkingDir "\sfx\" . rand . ".wav"
-	}
+}
 	
 sfxPlayBackspace(){
 	SoundPlay A_WorkingDir "\sfx\backspace.wav"
-	}
+}
 
 sfxPlayEnter(){
-	SoundPlay A_WorkingDir "\sfx\enter.wav"
-	}
+	rand := Random(1, 3)
+	SoundPlay A_WorkingDir "\sfx\enter" . rand . ".wav"
+}
 	
 sfxPlayToggle(){
-	SoundPlay A_WorkingDir "\sfx\toggle.wav"
-	}
+	rand := Random(1, 3)
+	SoundPlay A_WorkingDir "\sfx\toggle" . rand . ".wav"
+	KeyWait GetKeyName(SubStr(A_ThisHotkey,2))
+}
 	
 sfxPlayTab(){
-	SoundPlay A_WorkingDir "\sfx\tab.wav"
-	}
+	rand := Random(1, 3)
+	SoundPlay A_WorkingDir "\sfx\tab" . rand . ".wav"
+}
 	
 sfxPlaySpace(){
-	SoundPlay A_WorkingDir "\sfx\space.wav"
-	}
+	rand := Random(1, 3)
+	SoundPlay A_WorkingDir "\sfx\space" . rand . ".wav"
+}
+
+sfxPlayCopy(){
+	SoundPlay A_WorkingDir "\sfx\copy.wav"
+}
+
+sfxPlayCut(){
+	SoundPlay A_WorkingDir "\sfx\cut.wav"
+}
+
+sfxPlayPaste(){
+	SoundPlay A_WorkingDir "\sfx\paste.wav"
+}
+
+sfxPlayControl(){
+	rand := Random(1, 3)
+	SoundPlay A_WorkingDir "\sfx\control" . rand . ".wav"
+	KeyWait GetKeyName(SubStr(A_ThisHotkey,2))
+}
